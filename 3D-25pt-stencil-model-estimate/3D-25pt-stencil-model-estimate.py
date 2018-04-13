@@ -50,6 +50,7 @@ def pow_est(f_uncore, f_core, n_core, pareff):
 
 def generate_estimates(f_core, f_uncore):
     f = open('est-f_core-{}-f_uncore-{}.dat'.format(f_core, f_uncore), 'w+')
+    model_setup(f_core, f_uncore)
     for n_core in range(1, n_cores+1):
         perf_est = ecm_est(n_core, f_core)
         pareff = (perf_est/ecm_est(1, f_core))/n_core
@@ -58,5 +59,4 @@ def generate_estimates(f_core, f_uncore):
 
 freqs = (1.2, 1.8, 2.7)
 for f in freqs:
-    model_setup(f, f)
     generate_estimates(f, f)
